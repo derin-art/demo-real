@@ -29,7 +29,6 @@ export default function Page() {
   useMemo(
     () =>
       scene.traverse((obj: any) => {
-        console.log('sd', obj)
         if (obj.name === 'orange_glass001') {
           obj.material.color = new THREE.Color('red')
         }
