@@ -4,7 +4,7 @@ import { forwardRef, Suspense, useImperativeHandle, useRef } from 'react'
 import { OrbitControls, PerspectiveCamera, View as ViewImpl } from '@react-three/drei'
 import { Three } from '@/helpers/components/Three'
 
-export const Common = (props: { color; camePosition?: any }) => {
+export const Common = (props: { color?: any; camePosition?: any }) => {
   const { camePosition, color } = props
   const position = camePosition ? camePosition : [0, 0, 6]
   return (
