@@ -1,10 +1,5 @@
-'use client'
-import Editor from '@/components/editor/Editor'
-import { useEffect, useState, useMemo } from 'react'
-import { Object3D, Object3DEventMap } from 'three'
-import { OrbitControls, useGLTF } from '@react-three/drei'
-import * as THREE from 'three'
 import dynamic from 'next/dynamic'
+import { getCollection, getCollectionProducts } from 'lib/modified-queries'
 const Car = dynamic(() => import('../../src/components/models/Car'), { ssr: false })
 const DuckTwo = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.DuckTwo), { ssr: false })
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
@@ -24,10 +19,15 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
 })
 const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mod.Common), { ssr: false })
 
-export default function Page() {
+export default async function Page() {
+  const data = await getCollectionProducts({
+    sortKey: 'TITLE',
+    collection: 'hidden-homepage-carousel',
+  })
+  console.log(data)
   return (
-    <>
-      <Car></Car>
-    </>
+    <div className='relative'>
+      <Car data={data}></Car>
+    </div>
   )
 }
